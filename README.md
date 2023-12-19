@@ -1,2 +1,2 @@
-# Sistema-Escolar
-Projeto criado no intuito educacional e didático, afim de aprender e ensinar banco de dados e front-end
+# O Projeto
+A ideia do projeto é ensinar por meio prático o funcionamento de um sistema administrativo de uma escola, como funciona o back-end
