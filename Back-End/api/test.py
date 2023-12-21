@@ -8,4 +8,9 @@ mydb = mysql.connector.connect(user='root', password='Senha1234',
 mycursor = mydb.cursor()
 cm = Commands(mycursor)
 
-print(cm.loginconfirmacao('teste','123'))
+# query = (f"UPDATE alunos SET cpf='cpfteste' WHERE cpf='1'")
+# mycursor.execute(query)
+# mydb.commit()
+
+cm.modificar_alunos('cpf','cpfteste','1','teste2','123')
+mydb.commit()
