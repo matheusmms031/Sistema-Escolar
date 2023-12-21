@@ -26,6 +26,10 @@ def test_logincorfimacao_quando_receber_login_de_coordenador_errado():
 def test_consulta_aluno():
     email_teste_coordenador = "c_emailteste"
     senha_teste_coordenador = "c_senhateste"
-    resultado = cm.consulta('alunos',{'cpf':'a_cpfteste'},email_teste_coordenador,senha_teste_coordenador)
+    resultado = cm.consulta('alunos',{'cpf':'a_cpfteste','email':'a_emailteste'},email_teste_coordenador,senha_teste_coordenador)
     assert resultado == [("a_cpfteste","a_nometeste",datetime.date(1999, 9, 9),"a_emailteste","a_senhateste",1)]
     
+def test_argumentos_query_com_and():
+    parametros = {'cpf':'a_cpfteste','email':'a_emailteste'}
+    resultado = cm.argumentos_query(parametros)
+    assert resultado ==  "cpf='a_cpfteste' && email='a_emailteste'"

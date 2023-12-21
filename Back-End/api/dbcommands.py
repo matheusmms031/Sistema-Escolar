@@ -1,3 +1,4 @@
+from asyncio import QueueEmpty
 from datetime import date
 
 
@@ -7,15 +8,16 @@ class Commands():
         self.TABELAS = {'alunos':['cpf','nome','nascimento','email','senha','unidade_id'],'coordenadores':['cpf','nome','nascimento','email','senha','unidade_id']}
         
         
-    def argumentos_query(self,tabela,argumentos):
+    def argumentos_query(self,argumentos):
         chaves = list(argumentos.keys())
         valores = list(argumentos.values())
         query = ""
-        for argumento in chaves:
-            if argumento not in self.TABELAS[tabela]:
-                return False
-            else:
-                query += f"{argumento}='{valores[chaves.index(argumento)]}' "
+        if len(chaves) == 1:
+            query = f"{chaves[0]}='{valores[0]}'"
+        else:
+            for argumento in chaves:
+                query += f" && {argumento}='{valores[chaves.index(argumento)]}'"
+            query = query.replace("&&","",1).strip()
         print(query)
         return query
     
@@ -28,7 +30,7 @@ class Commands():
         if quantidade != 0:
             return True
         
-    def add(self,tabela,dados,email_usuario,senha_usuario): # (CPF_ALUNO, NOME_ALUNO, NASCIMENTO_ALUNO, EMAIL_ALUNO, SENHA_ALUNO, UNIDADE_ID_ALUNO)
+    def add(self,tabela,dados,email_usuario,senha_usuario): # 
         loginconfirmacao = self.loginconfirmacao('coordenadores',email_usuario,senha_usuario) # Faz a confirmação do coordenador, já que é o único que pode adicionar alunos
         if loginconfirmacao == True:
             campos = self.TABELAS[tabela]
@@ -48,10 +50,11 @@ class Commands():
         else:
             return 403 #Caso não seja coordenador retorne 403
     
-    def delete_alunos(self,cpf_aluno,email_usuario,senha_usuario): # (CPF_ALUNO, EMAIL_USUARIO, SENHA_USUARIO)
+    def delete(self,tabela,parametros,email_usuario,senha_usuario): 
         loginconfirmacao = self.loginconfirmacao('coordenadores',email_usuario,senha_usuario) # Faz a confirmação do coordenador, já que é o único que pode adicionar alunos
+        parametros = self.argumentos_query(parametros)
         if loginconfirmacao == True:
-            query = (f"DELETE FROM alunos WHERE cpf='{cpf_aluno}'")
+            query = (f"DELETE FROM {tabela} WHERE {parametros}")
             self.cursor.execute(query) # Transforma o dicionario em lista e adiciona
             return 200 # Caso seja coordenador retorne 200
         else:
@@ -68,9 +71,10 @@ class Commands():
         
     def consulta(self,tabela,argumentos,email_usuario,senha_usuario):
         loginconfirmacao = self.loginconfirmacao('coordenadores',email_usuario,senha_usuario)
-        parametros = self.argumentos_query(tabela,argumentos)
+        parametros = self.argumentos_query(argumentos)
         if loginconfirmacao == True:
             query = (f"SELECT * FROM {tabela} WHERE {parametros}")
+            print(query)
             self.cursor.execute(query)
             resultado = self.cursor.fetchall()
             return resultado
