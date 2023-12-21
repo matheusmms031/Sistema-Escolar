@@ -1,7 +1,9 @@
-INSERT INTO unidades (id,nome,localizacao) VALUES
-("1","unidadenometeste","unidadelocalizacaoteste")
+INSERT INTO unidades (id,nome,localização) VALUES
+("1","nometeste","localizacaoteste");
 
 
 INSERT INTO alunos (cpf,nome,nascimento,email,senha,unidade_id) VALUES
-("alunocpfteste","alunonometeste","1999-09-09","alunoemailteste","alunosenhateste","1");
+("a_cpfteste","a_nometeste","1999-09-09","a_emailteste","a_senhateste","1");
 
+INSERT INTO coordenadores (cpf,nome,nascimento,email,senha,unidade_id) VALUES
+("c_cpfteste","c_nometeste","1999-09-09","c_emailteste","c_senhateste","1");

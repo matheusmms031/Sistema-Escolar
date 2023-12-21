@@ -4,19 +4,18 @@ from datetime import date
 class Commands():
     def __init__(self,cursor):
         self.cursor = cursor
-        self.TABELA_ALUNOS = ['cpf','nome','nascimento','email','senha','unidade_id']
+        self.TABELAS = {'alunos':['cpf','nome','nascimento','email','senha','unidade_id'],'coordenadores':['cpf','nome','nascimento','email','senha','unidade_id']}
+        
         
     def argumentos_query(self,tabela,argumentos):
         chaves = list(argumentos.keys())
         valores = list(argumentos.values())
         query = ""
-        match tabela:
-            case 'alunos':
-                for argumento in chaves:
-                    if argumento not in self.TABELA_ALUNOS:
-                        return False
-                    else:
-                        query += f"{argumento}='{valores[chaves.index(argumento)]}' "
+        for argumento in chaves:
+            if argumento not in self.TABELA[tabela]:
+                return False
+            else:
+                query += f"{argumento}='{valores[chaves.index(argumento)]}' "
         print(query)
         return query
     
@@ -29,12 +28,10 @@ class Commands():
         if quantidade != 0:
             return True
         
-    def add_alunos(self,tabela,dados,email_usuario,senha_usuario): # (CPF_ALUNO, NOME_ALUNO, NASCIMENTO_ALUNO, EMAIL_ALUNO, SENHA_ALUNO, UNIDADE_ID_ALUNO)
-        match tabela:
-            case 'alunos':
-                campos = self.TABELA_ALUNOS
-                loginconfirmacao = self.loginconfirmacao('coordenadores',email_usuario,senha_usuario) # Faz a confirmação do coordenador, já que é o único que pode adicionar alunos
+    def add(self,tabela,dados,email_usuario,senha_usuario): # (CPF_ALUNO, NOME_ALUNO, NASCIMENTO_ALUNO, EMAIL_ALUNO, SENHA_ALUNO, UNIDADE_ID_ALUNO)
+        loginconfirmacao = self.loginconfirmacao('coordenadores',email_usuario,senha_usuario) # Faz a confirmação do coordenador, já que é o único que pode adicionar alunos
         if loginconfirmacao == True:
+            campos = self.TABELAS[tabela]
             campos_query = "("
             campos_str = "("
             for elemento in campos:
