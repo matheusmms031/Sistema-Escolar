@@ -15,7 +15,9 @@ O banco de dados foi construido apartir da ideia de que a escola contenha 2 tipo
 - Coordenadores
 - Professores
 
-Além disso foi divido em tabela os boletins, as unidades da escola(supondo que seja uma rede de escolas), a solicitação de segunda chamada das provas e solicitação de reunião.
+Além disso foi divido em tabela os boletins, as unidades da escola(supondo que seja uma rede de escolas), a solicitação de segunda chamada das provas e solicitação de reunião, como na foto abaixo:
+
+![imagem](bancorep.png)
 
 
 ## Como rodar o projeto?
