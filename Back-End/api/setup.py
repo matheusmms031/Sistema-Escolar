@@ -19,18 +19,15 @@ def pagina_ajuda():
 
 @app.route("/alunos/add", methods=['POST']) 
 def add_aluno(): # Adiciona alunos no banco
-    try:
-        dados: tuple[str,str,date,str,str,int] = (request.form['cpf_aluno'],request.form['nome_aluno'],request.form['nascimento_aluno'],request.form['email_aluno'],request.form['senha_aluno'],request.form['unidade_id_aluno']) # (CPF_ALUNO, NOME_ALUNO, NASCIMENTO_ALUNO, EMAIL_ALUNO, SENHA_ALUNO, UNIDADE_ID_ALUNO)
-        email_usuario = request.headers['email-usuario']
-        senha_usuario = request.headers['senha-usuario']
-        resultado = cm.add_alunos(dados,email_usuario,senha_usuario)
-        if resultado == 200: # Se o usuario que fez a requisição for coordenador...
-            mydb.commit()
-            return Response(status=200)
-        else: # Caso não seja...
-            return Response(status=403)
-    except:
-        return Response(status=500)
+    dados: tuple[str,str,date,str,str,int] = (request.form['cpf_aluno'],request.form['nome_aluno'],request.form['nascimento_aluno'],request.form['email_aluno'],request.form['senha_aluno'],request.form['unidade_id_aluno']) # (CPF_ALUNO, NOME_ALUNO, NASCIMENTO_ALUNO, EMAIL_ALUNO, SENHA_ALUNO, UNIDADE_ID_ALUNO)
+    email_usuario = request.headers['email-usuario']
+    senha_usuario = request.headers['senha-usuario']
+    resultado = cm.add_alunos('alunos',dados,email_usuario,senha_usuario)
+    if resultado == 200: # Se o usuario que fez a requisição for coordenador...
+        mydb.commit()
+        return Response(status=200)
+    else: # Caso não seja...
+        return Response(status=403)
 
 @app.route("/alunos/delete", methods=['DELETE'])
 def delete_alunos(): # Remove alunos do banco

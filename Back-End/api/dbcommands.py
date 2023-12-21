@@ -29,11 +29,24 @@ class Commands():
         if quantidade != 0:
             return True
         
-    def add_alunos(self,dados: dict[str,str,date,str,int],email_usuario,senha_usuario): # (CPF_ALUNO, NOME_ALUNO, NASCIMENTO_ALUNO, EMAIL_ALUNO, SENHA_ALUNO, UNIDADE_ID_ALUNO)
-        loginconfirmacao = self.loginconfirmacao('coordenadores',email_usuario,senha_usuario) # Faz a confirmação do coordenador, já que é o único que pode adicionar alunos
+    def add_alunos(self,tabela,dados,email_usuario,senha_usuario): # (CPF_ALUNO, NOME_ALUNO, NASCIMENTO_ALUNO, EMAIL_ALUNO, SENHA_ALUNO, UNIDADE_ID_ALUNO)
+        match tabela:
+            case 'alunos':
+                campos = self.TABELA_ALUNOS
+                loginconfirmacao = self.loginconfirmacao('coordenadores',email_usuario,senha_usuario) # Faz a confirmação do coordenador, já que é o único que pode adicionar alunos
         if loginconfirmacao == True:
-            query = (f"INSERT INTO alunos (cpf,nome,nascimento,email,senha,unidade_id) VALUES (%s,%s,%s,%s,%s,%s)")
-            self.cursor.execute(query,(dados['cpf_aluno'],dados['nome_aluno'],dados['nascimento_aluno'],dados['email_aluno'],dados['senha_aluno'],dados['unidade_id_aluno'])) # Transforma o dicionario em lista e adiciona
+            campos_query = "("
+            campos_str = "("
+            for elemento in campos:
+                campos_query += f',{elemento}'
+                campos_str += ",%s"
+            campos_str += ')'
+            campos_query += ')'
+            campos_query = campos_query.replace(",","",1)
+            campos_str = campos_str.replace(",","",1)
+            query = (f"INSERT INTO {tabela} {campos_query} VALUES {campos_str}")
+            print(query)
+            self.cursor.execute(query,tuple(dados)) # Transforma o dicionario em lista e adiciona
             return 200 # Caso seja coordenador retorne 200
         else:
             return 403 #Caso não seja coordenador retorne 403
