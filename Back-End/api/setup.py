@@ -1,4 +1,3 @@
-from unittest import result
 from flask import Flask, request, Response, render_template
 from datetime import date
 import flask
