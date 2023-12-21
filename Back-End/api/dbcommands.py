@@ -20,7 +20,7 @@ class Commands():
         print(query)
         return query
     
-    def loginconfirmacao(self,usuario,email,senha,): # Confirma se o email e a senha batem no banco
+    def loginconfirmacao(self,usuario,email,senha): # Confirma se o email e a senha batem no banco
         query = f"SELECT * FROM {usuario} WHERE email='{email}' and senha='{senha}'"
         self.cursor.execute(query)
         quantidade = len(self.cursor.fetchall())

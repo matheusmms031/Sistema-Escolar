@@ -63,18 +63,14 @@ def modificar_alunos(): # Altera dados
     
 @app.route("/alunos/consulta", methods=['GET']) 
 def consulta_alunos(): # Altera dados
-    try:
-        argumentos = request.args.to_dict()
-        email_usuario = request.headers.get('email-usuario')
-        senha_usuario = request.headers.get('senha-usuario')
-        resultado = cm.consulta('alunos',argumentos,email_usuario,senha_usuario)
-        if resultado != 403: # Se o usuario que fez a requisição for coordenador...
-            return jsonify(resultado)
-        else:
-            return resultado
-    except:
-        return Response(status=500)
-    
+    argumentos = request.args.to_dict()
+    email_usuario = request.headers.get('email-usuario')
+    senha_usuario = request.headers.get('senha-usuario')
+    resultado = cm.consulta('alunos',argumentos,email_usuario,senha_usuario)
+    if resultado != 403: # Se o usuario que fez a requisição for coordenador...
+        return jsonify(resultado)
+    else:
+        return Response(code=resultado)    
     
 
 # @app.route("/coordenadores/add", methods=['POST']) 
