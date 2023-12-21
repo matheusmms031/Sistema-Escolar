@@ -12,7 +12,7 @@ class Commands():
         valores = list(argumentos.values())
         query = ""
         for argumento in chaves:
-            if argumento not in self.TABELA[tabela]:
+            if argumento not in self.TABELAS[tabela]:
                 return False
             else:
                 query += f"{argumento}='{valores[chaves.index(argumento)]}' "
