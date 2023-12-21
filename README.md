@@ -10,4 +10,4 @@ As tecnologias empregadas são:
 
 ## Como rodar o projeto?
 
-Os requisitos para rodar o [setup.py](/Back-End/api/setup.py) está em  [**/back-end/config/requirements.txt**](/Back-End/config/requeriments.txt), agora para criar o banco e rodar na máquina é *necessário a versão 8.0 ou superior* do MySQL
+Os requisitos para utilizar o [setup.py](/Back-End/api/setup.py) é preciso a versão *3.12* do Python e os requisitos de bibliotecas estão em  **/back-end/config/requirements.txt**, agora para criar o banco e rodar na máquina é *necessário a versão 8.0 ou superior do MySQL*, e o [arquivo para configurar](/back-end/config/banco/script.sql) está em **/back-end/config/banco/script.sql**
