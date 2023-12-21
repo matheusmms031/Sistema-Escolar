@@ -52,13 +52,11 @@ def delete_alunos(): # Remove alunos do banco
 @app.route("/alunos/modificar", methods=['POST']) 
 def modificar_alunos(): # Altera dados
     try:
-        print(request.headers)
         cpf_aluno = request.args.get('cpf') # (CPF_ALUNO)
         campo = request.form.get('campo')
         novo_dado = request.form.get('novo_dado')
         email_usuario = request.headers.get('email-usuario')
         senha_usuario = request.headers.get('senha-usuario')
-        print(email_usuario,senha_usuario)
         resultado = cm.modificar_alunos(campo,cpf_aluno,novo_dado,email_usuario,senha_usuario)
         if resultado == 200: # Se o usuario que fez a requisição for coordenador...
             mydb.commit()
