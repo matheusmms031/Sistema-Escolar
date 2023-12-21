@@ -1,6 +1,6 @@
-from flask import Flask, request, Response, render_template
+from flask import Flask, request, Response, render_template, jsonify
 from datetime import date
-import flask
+import flask 
 import json
 import mysql.connector
 from dbcommands import Commands
@@ -12,7 +12,6 @@ mydb = mysql.connector.connect(user='root', password='Senha1234',
 mycursor = mydb.cursor()
 cm = Commands(mycursor)
 
-cm.search()
 
 @app.route("/help")
 def pagina_ajuda():
@@ -65,22 +64,36 @@ def modificar_alunos(): # Altera dados
     except:
         return Response(status=500)
     
-    
-
-@app.route("/coordenadores/add", methods=['POST']) 
-def add_coordenadores(): # Adiciona alunos no banco
+@app.route("/alunos/consulta", methods=['GET']) 
+def consulta_alunos(): # Altera dados
     try:
-        dados: tuple[str,str,date,str,str,int] = (request.form['cpf_co'],request.form['nome_co'],request.form['nascimento_co'],request.form['email_co'],request.form['senha_co'],request.form['unidade_id_co']) # (CPF_ALUNO, NOME_ALUNO, NASCIMENTO_ALUNO, EMAIL_ALUNO, SENHA_ALUNO, UNIDADE_ID_ALUNO)
+        argumentos = request.args.to_dict()
         email_usuario = request.headers.get('email-usuario')
         senha_usuario = request.headers.get('senha-usuario')
-        resultado = cm.add_alunos(dados,email_usuario,senha_usuario)
-        if resultado == 200: # Se o usuario que fez a requisição for coordenador...
-            mydb.commit()
-            return Response(status=200)
-        else: # Caso não seja...
-            return Response(status=403)
+        resultado = cm.consulta('alunos',argumentos,email_usuario,senha_usuario)
+        if resultado != 403: # Se o usuario que fez a requisição for coordenador...
+            return jsonify(resultado)
+        else:
+            return resultado
     except:
         return Response(status=500)
+    
+    
+
+# @app.route("/coordenadores/add", methods=['POST']) 
+# def add_coordenadores(): # Adiciona alunos no banco
+#     try:
+#         dados: tuple[str,str,date,str,str,int] = (request.form['cpf_co'],request.form['nome_co'],request.form['nascimento_co'],request.form['email_co'],request.form['senha_co'],request.form['unidade_id_co']) # (CPF_ALUNO, NOME_ALUNO, NASCIMENTO_ALUNO, EMAIL_ALUNO, SENHA_ALUNO, UNIDADE_ID_ALUNO)
+#         email_usuario = request.headers.get('email-usuario')
+#         senha_usuario = request.headers.get('senha-usuario')
+#         resultado = cm.add_alunos(dados,email_usuario,senha_usuario)
+#         if resultado == 200: # Se o usuario que fez a requisição for coordenador...
+#             mydb.commit()
+#             return Response(status=200)
+#         else: # Caso não seja...
+#             return Response(status=403)
+#     except:
+#         return Response(status=500)
 
 # @app.route("/alunos/remove", methods=['POST']) # Deve ser POST pois um formulário HTML aceita...
 # def add_aluno(): # Adiciona alunos no banco

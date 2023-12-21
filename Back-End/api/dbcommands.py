@@ -4,7 +4,22 @@ from datetime import date
 class Commands():
     def __init__(self,cursor):
         self.cursor = cursor
+        self.TABELA_ALUNOS = ['cpf','nome','nascimento','email','senha','unidade_id']
         
+    def argumentos_query(self,tabela,argumentos):
+        chaves = list(argumentos.keys())
+        valores = list(argumentos.values())
+        query = ""
+        match tabela:
+            case 'alunos':
+                for argumento in chaves:
+                    if argumento not in self.TABELA_ALUNOS:
+                        return False
+                    else:
+                        query += f"{argumento}='{valores[chaves.index(argumento)]}' "
+        print(query)
+        return query
+    
     def loginconfirmacao(self,usuario,email,senha,): # Confirma se o email e a senha batem no banco
         query = f"SELECT * FROM {usuario} WHERE email='{email}' and senha='{senha}'"
         self.cursor.execute(query)
@@ -40,7 +55,14 @@ class Commands():
             return 200 # Caso seja coordenador retorne 200
         else:
             return 403 #Caso não seja coordenador retorne 403
-    
-    def search(self):
-        self.cursor.execute('SELECT * FROM alunos')
-        print(self.cursor.fetchall())
+        
+    def consulta(self,tabela,argumentos,email_usuario,senha_usuario):
+        loginconfirmacao = self.loginconfirmacao('coordenadores',email_usuario,senha_usuario)
+        parametros = self.argumentos_query(tabela,argumentos)
+        if loginconfirmacao == True:
+            query = (f"SELECT * FROM {tabela} WHERE {parametros}")
+            self.cursor.execute(query)
+            resultado = self.cursor.fetchall()
+            return resultado
+        else:
+            return 403
