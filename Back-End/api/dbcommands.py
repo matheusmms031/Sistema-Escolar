@@ -1,5 +1,7 @@
 from asyncio import QueueEmpty
 from datetime import date
+from os import stat
+from urllib import response
 
 
 class Commands():
@@ -32,11 +34,14 @@ class Commands():
         
     def add(self,tabela,dados,email_usuario,senha_usuario): # 
         loginconfirmacao = self.loginconfirmacao('coordenadores',email_usuario,senha_usuario) # Faz a confirmação do coordenador, já que é o único que pode adicionar alunos
+        dados = tuple(dados)
         if loginconfirmacao == True:
             campos = self.TABELAS[tabela]
+            elemento_adicionado = {}
             campos_query = "("
             campos_str = "("
             for elemento in campos:
+                elemento_adicionado[elemento] = dados[campos.index(elemento)]
                 campos_query += f',{elemento}'
                 campos_str += ",%s"
             campos_str += ')'
@@ -45,10 +50,13 @@ class Commands():
             campos_str = campos_str.replace(",","",1)
             query = (f"INSERT INTO {tabela} {campos_query} VALUES {campos_str}")
             print(query)
-            self.cursor.execute(query,tuple(dados)) # Transforma o dicionario em lista e adiciona
-            return 200 # Caso seja coordenador retorne 200
+            self.cursor.execute(query,dados)
+            status_code = 200 # Transforma o dicionario em lista e adiciona  # Caso seja coordenador retorne 200
         else:
-            return 403 #Caso não seja coordenador retorne 403
+            status_code = 403 #Caso não seja coordenador retorne 403
+        response = {'status_code':status_code,'data':elemento_adicionado}
+        print(response)
+        return response
     
     def delete(self,tabela,parametros,email_usuario,senha_usuario): 
         loginconfirmacao = self.loginconfirmacao('coordenadores',email_usuario,senha_usuario) # Faz a confirmação do coordenador, já que é o único que pode adicionar alunos

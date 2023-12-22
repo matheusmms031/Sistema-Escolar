@@ -127,7 +127,7 @@ def add_unidade():
     else: # Caso não seja...
         return Response(status=403)
     
-@app.route("/unidade/delete", methods=['DELETE'])
+@app.route("/unidades/delete", methods=['DELETE'])
 def delete_unidades(): # Remove alunos do banco
     argumentos = request.args.to_dict()
     email_usuario = request.headers['email-usuario']
