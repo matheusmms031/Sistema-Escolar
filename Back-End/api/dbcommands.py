@@ -1,11 +1,17 @@
 from asyncio import QueueEmpty
 from datetime import date
 from os import stat
+import mysql.connector
 from urllib import response
+
+mydb = mysql.connector.connect(user='root', password='Senha1234',
+                              host='127.0.0.1',
+                              database='cadastro')
 
 
 class Commands():
     def __init__(self,cursor):
+        self.mydb = mydb
         self.cursor = cursor
         self.TABELAS = {'alunos':['cpf','nome','nascimento','email','senha','unidade_id'],'coordenadores':['cpf','nome','nascimento','email','senha','unidade_id']}
         

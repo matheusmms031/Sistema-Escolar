@@ -1,5 +1,4 @@
-from click import argument
-from flask import Flask, request, Response, render_template, jsonify
+from flask import Flask, request, Response, render_template, jsonify, g
 from datetime import date
 import flask 
 import json
@@ -12,7 +11,6 @@ mydb = mysql.connector.connect(user='root', password='Senha1234',
                               database='cadastro')
 mycursor = mydb.cursor()
 cm = Commands(mycursor)
-
 
 @app.route("/help")
 def pagina_ajuda():
