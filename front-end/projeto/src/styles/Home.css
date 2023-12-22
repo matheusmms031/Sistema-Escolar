@@ -1,0 +1,70 @@
+.login{
+    display: flex;
+    /* width: 120rem; */
+    height: 100vh;
+    align-items: center;
+}
+
+h1,span{
+    color: aliceblue;
+}
+
+.esquerda{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 0;
+    align-self: stretch;
+    background: #000;
+}
+
+.direita{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3.4375rem;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.9375rem;
+    flex: 1 0 0;
+    align-self: stretch;
+
+}
+
+.box h1{
+    color: #FFF;
+    text-align: center;
+    font-family: "Inter";
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0px;
+}
+
+.box span{
+    color: #FFF;
+    margin: 0px;
+    text-align: center;
+    font-family: "Inter";
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.box-textos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
