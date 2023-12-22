@@ -40,3 +40,4 @@ Os requisitos para utilizar o [setup.py](/Back-End/api/setup.py) é a versão *3
 ### /unidades
 - `/unidades/add`
 - `/unidade/consulta`
+- `/unidades/delete`
