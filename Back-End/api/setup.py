@@ -80,6 +80,29 @@ def add_coordenadores(): # Adiciona alunos no banco
         return Response(status=200)
     else: # Caso não seja...
         return Response(status=403)
+    
+@app.route("/coordenadores/delete", methods=['DELETE'])
+def delete_coordenadores(): # Remove alunos do banco
+    argumentos = request.args.to_dict()
+    email_usuario = request.headers['email-usuario']
+    senha_usuario = request.headers['senha-usuario']
+    resultado = cm.delete('coordenadores',argumentos,email_usuario,senha_usuario)
+    if resultado == 200: # Se o usuario que fez a requisição for coordenador...
+        mydb.commit()
+        return Response(status=200)
+    else: # Caso não seja...
+        return Response(status=403)
+    
+@app.route("/coordenadores/consulta", methods=['GET']) 
+def consulta_coordenadores(): 
+    argumentos = request.args.to_dict()
+    email_usuario = request.headers.get('email-usuario')
+    senha_usuario = request.headers.get('senha-usuario')
+    resultado = cm.consulta('coordenadores',argumentos,email_usuario,senha_usuario)
+    if resultado != 403: # Se o usuario que fez a requisição for coordenador...
+        return jsonify(resultado)
+    else:
+        return Response(code=resultado)  
 
     
 if __name__ == "__main__":
