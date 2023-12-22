@@ -103,6 +103,41 @@ def consulta_coordenadores():
         return jsonify(resultado)
     else:
         return Response(code=resultado)  
+    
+@app.route("/unidades/consulta", methods=['GET']) 
+def consulta_unidade(): 
+    argumentos = request.args.to_dict()
+    email_usuario = request.headers.get('email-usuario')
+    senha_usuario = request.headers.get('senha-usuario')
+    resultado = cm.consulta('unidades',argumentos,email_usuario,senha_usuario)
+    if resultado != 403: # Se o usuario que fez a requisição for coordenador...
+        return jsonify(resultado)
+    else:
+        return Response(code=resultado)      
+
+@app.route("/unidades/add", methods=['POST']) 
+def add_unidade(): 
+    dados = (request.form['nome_unidade'], request.form['localizacao_unidade'], request.form['coordenadora_cpf_unidade'])
+    email_usuario = request.headers.get('email-usuario')
+    senha_usuario = request.headers.get('senha-usuario')
+    resultado = cm.add('unidades',dados,email_usuario,senha_usuario)
+    if resultado == 200: # Se o usuario que fez a requisição for coordenador...
+        mydb.commit()
+        return Response(status=200)
+    else: # Caso não seja...
+        return Response(status=403)
+    
+@app.route("/unidade/delete", methods=['DELETE'])
+def delete_unidades(): # Remove alunos do banco
+    argumentos = request.args.to_dict()
+    email_usuario = request.headers['email-usuario']
+    senha_usuario = request.headers['senha-usuario']
+    resultado = cm.delete('unidades',argumentos,email_usuario,senha_usuario)
+    if resultado == 200: # Se o usuario que fez a requisição for coordenador...
+        mydb.commit()
+        return Response(status=200)
+    else: # Caso não seja...
+        return Response(status=403)
 
     
 if __name__ == "__main__":

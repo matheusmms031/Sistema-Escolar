@@ -26,3 +26,17 @@ Além disso foi divido em tabela os boletins, as unidades da escola(supondo que 
 ### Requisitos e preparo
 
 Os requisitos para utilizar o [setup.py](/Back-End/api/setup.py) é a versão *3.12* do `Python` e as bibliotecas estão em  **`/back-end/config/requirements.txt`**, agora para criar o banco e rodar na máquina é *necessário a versão 8.0 ou superior do `MySQL`*, e o [arquivo de dump](/back-end/config/banco/script.sql) está em **`/back-end/config/banco/script.sql`**, uma imagem docker do sistema ainda não foi feita pois ainda está em desenvolvimento.
+
+## Rotas da API já feitas
+### /alunos
+- `/alunos/add`
+- `/alunos/modificar`
+- `/alunos/delete`
+- `/alunos/consulta`
+### /coordenadores
+- `/coordenadores/add`
+- `/coordenadores/delete`
+- `/coordenadores/consulta`
+### /unidades
+- `/unidades/add`
+- `/unidade/consulta`
