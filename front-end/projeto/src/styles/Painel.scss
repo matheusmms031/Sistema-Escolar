@@ -1,0 +1,45 @@
+.painel{
+    display: flex;
+    height: 121.25rem;
+    flex-direction: column;
+    align-items: center;
+
+    nav{
+        display: flex;
+        height: 1.7rem;
+        padding: 1.125rem 6.25rem 1.0625rem 6.25rem;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        align-self: stretch;
+        border-bottom: 2px solid #FFF;
+        background: #000;
+
+        .nav-content{
+            display: flex;
+            width: 107.5rem;
+            height: 2.625rem;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            .nav-items{
+                display: flex;
+                height: 2.5rem;
+                padding: 0.0625rem 0rem;
+                justify-content: center;
+                align-items: center;
+                gap: 0.9375rem;
+                color: #FFF;
+                font-family: "Inter";
+                font-size: 1rem;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+
+                .nome1{
+                    text-align: right;
+                }
+            }
+        }
+    }
+}

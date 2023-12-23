@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import Flask, request, Response, render_template, jsonify, g
 from datetime import date
 import flask 
@@ -138,10 +137,12 @@ def delete_unidades(): # Remove alunos do banco
     else: # Caso não seja...
         return Response(status=403)
     
-@app.route("/pagina/painel",methods=["GET"])
+@app.route("/login",methods=["POST"])
 def pagina_painel():
-    email_usuario = request.headers['email-usuario']
-    senha_usuario = request.headers['senha-usuario']
-    
+    email_usuario = request.form['email']
+    senha_usuario = request.form['senha']
+    saida = cm.login(email_usuario,senha_usuario)
+    return jsonify(saida)
+
 if __name__ == "__main__":
     app.run(host="127.0.0.1",port=5000,debug=True)

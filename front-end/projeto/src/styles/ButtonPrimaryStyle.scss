@@ -1,0 +1,25 @@
+.buttonprimary{
+    display: flex;
+    padding: 0.8125rem 7.25rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 0.5rem;
+    background: #835AFD;
+    transition: all 0.2s ease-in-out;
+
+    span{
+        color: var(--White-Details, #FEFEFE);
+        font-family: "Inter";
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+}
+
+.buttonprimary:hover{
+    transform: scale(1.05);
+}

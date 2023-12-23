@@ -1,0 +1,162 @@
+.login{
+    display: flex;
+    /* width: 120rem; */
+    height: 100vh;
+    align-items: center;
+}
+
+.esquerda{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 0;
+    align-self: stretch;
+    background: #000;
+
+    .box-textos{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .box {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.9375rem;
+        flex: 1 0 0;
+        align-self: stretch;
+    
+        h1{
+            color: #FFF;
+            text-align: center;
+            font-family: "Inter";
+            font-size: 3rem;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            margin: 0px;
+        }
+        span{
+            color: #FFF;
+            margin: 0px;
+            text-align: center;
+            font-family: "Inter";
+            font-size: 2rem;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+        }
+        .autor{
+            color: #835AFD;
+            font-size: 1rem;
+        }
+    }
+}
+
+.direita{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3.4375rem;
+    flex: 1 0 0;
+    align-self: stretch;
+
+    .titulos{
+        h1{
+            color: #000;
+            text-align: center;
+            font-family: "Inter";
+            font-size: 2.5rem;
+            font-style: normal;
+            font-weight: 600;
+            padding: 0px;
+            margin: 0px;
+            line-height: normal;
+        }
+        span{
+            color: #000;
+            text-align: center;
+            font-family: "Inter";
+            font-size: 1.5rem;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+        }
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .content{
+        display: flex;
+        height: 13.625rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625rem;
+
+        .button{
+            display: flex;
+            padding: 0.8125rem 7.25rem;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 1 0 0;
+            align-self: stretch;
+            border-radius: 0.5rem;
+            background: #835AFD;
+
+            span{
+                color: var(--White-Details, #FEFEFE);
+                font-family: "Inter";
+                font-size: 1rem;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+            }
+        }
+        .content-box{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.25rem;
+        
+            .box-input{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.3125rem;
+                
+
+                span{
+                    color: #000;
+                    font-family: "Inter";
+                    font-size: 1.25rem;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    width: 6rem;
+                    height: 1.1875rem;
+                }
+
+                input{
+                    display: flex;
+                    width: 20rem;
+                    height: 3.125rem;
+                    padding: 0.3rem 0.6rem 0.3rem 1rem;
+                    align-items: center;
+                    gap: 0.625rem;
+                    border-radius: 0.5rem;
+                    border: 1px solid var(--Gray-Medium, #A8A8B3);
+                    background: #FFF;
+                }
+            }
+        }
+    }
+}

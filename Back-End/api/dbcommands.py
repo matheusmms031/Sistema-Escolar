@@ -15,7 +15,23 @@ class Commands():
         self.cursor = cursor
         self.TABELAS = {'alunos':['cpf','nome','nascimento','email','senha','unidade_id'],'coordenadores':['cpf','nome','nascimento','email','senha','unidade_id']}
         
-        
+    def login(self,email,senha):
+        tabelas_login = ['alunos','coordenadores']
+        saida = {'status_code':0,'data':{}}
+        for tabela in tabelas_login:
+            query = f"SELECT * FROM {tabela} WHERE email='{email}' and senha='{senha}'"
+            self.cursor.execute(query)
+            resposta = self.cursor.fetchall()
+            if len(resposta) != 0:
+                resposta = resposta[0]
+                for coluna in self.TABELAS[tabela]:
+                    saida['data'][coluna] = resposta[self.TABELAS[tabela].index(coluna)]
+                saida['status_code'] = 200
+            else:
+                saida['status_code'] = 500
+        return saida
+            
+    
     def argumentos_query(self,argumentos):
         chaves = list(argumentos.keys())
         valores = list(argumentos.values())
@@ -88,7 +104,6 @@ class Commands():
         parametros = self.argumentos_query(argumentos)
         if loginconfirmacao == True:
             query = (f"SELECT * FROM {tabela} WHERE {parametros}")
-            print(query)
             self.cursor.execute(query)
             resultado = self.cursor.fetchall()
             return resultado
