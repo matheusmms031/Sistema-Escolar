@@ -4,7 +4,7 @@ como funciona o o banco de dados criado para o projeto.
 
 ![Escola por dentro](Login.png)
 
-## Tecnologias
+## Tecnologias empregadas
 
 ### ReactJS
 
