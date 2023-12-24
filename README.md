@@ -15,7 +15,19 @@ Além disso usei também algumas outras bibliotecas juntamente com o ReactJS, s�
 - SASS
 - React Router Dom
 - Axios
-- Mui Material 
+- Mui Material
+
+As versões utilizadas são:
+
+```json
+{
+    "axios": "^1.6.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.1",
+    "sass": "^1.69.5"
+}
+```
 
 ## Funcionamento do banco
 O banco de dados foi construido apartir da ideia de que a escola contenha 2 tipos de funcionários dividos em tabelas, sendo eles os:
