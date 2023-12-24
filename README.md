@@ -12,13 +12,6 @@ Utilizei nesse projeto o `ReactJS` no Front-end, como eu já tinha um conhecimen
 
 Além disso usei também algumas outras bibliotecas juntamente com o ReactJS, são eles:
 
-- SASS
-- React Router Dom
-- Axios
-- Mui Material
-
-As versões utilizadas são:
-
 ```json
 {
     "axios": "^1.6.2",
@@ -28,6 +21,7 @@ As versões utilizadas são:
     "sass": "^1.69.5"
 }
 ```
+**Obs: tudo isso foi tirado do `package.json`**
 
 ## Funcionamento do banco
 O banco de dados foi construido apartir da ideia de que a escola contenha 2 tipos de funcionários dividos em tabelas, sendo eles os:
