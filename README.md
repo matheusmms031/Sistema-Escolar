@@ -15,6 +15,7 @@ Além disso usei também algumas outras bibliotecas juntamente com o ReactJS, s�
 - SASS
 - React Router Dom
 - Axios
+- Mui Material 
 
 ## Funcionamento do banco
 O banco de dados foi construido apartir da ideia de que a escola contenha 2 tipos de funcionários dividos em tabelas, sendo eles os:
