@@ -1,0 +1,19 @@
+.operacional-title{
+    margin: 0px;
+    display: flex;
+    height: 10rem;
+    padding: 0rem 6.25rem;
+    align-items: center;
+    align-self: stretch;
+    background: linear-gradient(180deg, #000 0%, #510077 100%);
+
+    span{
+        color: #FFF;
+        text-align: right;
+        font-family: "Comfortaa";
+        font-size: 2.5rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+}

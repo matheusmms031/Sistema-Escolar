@@ -1,14 +1,19 @@
-import "../styles/Home.scss";
+import "../styles/Login.scss";
 import Image from '../assets/image.png'
 import ButtonPrimary from '../components/ButtonPrimary.jsx'
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from 'axios';
+import Alert from '@mui/material/Alert';
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../App.jsx";
 
 
-function Home() {
+function Login() {
+	const navigate = useNavigate();
 	const [email, setEmail] = useState("")
+	const [senhaerrada, setSenhaErrada] = useState(false)
 	const [senha, setSenha] = useState("")
-	const [dados, setDados] = useState({})
+	const [user, setUser] = useContext(UserContext)
 
 	const handleChangeEmail = (event) => {
 		setEmail(event.target.value);
@@ -30,11 +35,15 @@ function Home() {
 			headers: { "Content-Type": "multipart/form-data" },
 		  })
 			.then(function (response) {
-			  //handle success
-			  if (response.data.status_code == 200){
-				setDados(response.data.data)
-				console.log(dados)
-			  }
+				console.log(response)
+				//handle success
+				if (response.data.status_code == 200){
+					setUser(response.data.data)
+					navigate("/painel")
+				}
+				else{
+					setSenhaErrada(true)
+				}
 			})
 	}
 
@@ -78,10 +87,11 @@ function Home() {
 					</svg>
 					<span>Entrar</span>
 				</ButtonPrimary>
+				{(senhaerrada) ? (<Alert severity="warning">Sua senha está incorreta</Alert>) : (<div></div>)}
 			</div>
 		</section>
     </div>
   );
 }
 
-export default Home;
+export default Login;

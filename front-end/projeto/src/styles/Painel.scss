@@ -1,6 +1,5 @@
-.painel{
+.home{
     display: flex;
-    height: 121.25rem;
     flex-direction: column;
     align-items: center;
 
@@ -41,5 +40,13 @@
                 }
             }
         }
+    }
+    
+    .operacional{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1 0 0;
+        align-self: stretch;
     }
 }
