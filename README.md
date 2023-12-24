@@ -5,10 +5,16 @@ como funciona o o banco de dados criado para o projeto.
 ![Escola por dentro](Login.png)
 
 ## Tecnologias
-As tecnologias empregadas são:
-- Python3(Flask e mysqlconnector...)
-- MySQL
-- ReactJS
+
+### ReactJS
+
+Utilizei nesse projeto o `ReactJS` no Front-end, como eu já tinha um conhecimento prévio acabei optando por essa framework, para instalação do mesmo usei o `Vite`.
+
+Além disso usei também algumas outras bibliotecas juntamente com o ReactJS, são eles:
+
+- SASS
+- React Router Dom
+- Axios
 
 ## Funcionamento do banco
 O banco de dados foi construido apartir da ideia de que a escola contenha 2 tipos de funcionários dividos em tabelas, sendo eles os:
