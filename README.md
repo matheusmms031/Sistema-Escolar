@@ -21,7 +21,7 @@ Além disso usei também algumas outras bibliotecas juntamente com o ReactJS, s�
     "sass": "^1.69.5"
 }
 ```
-**Obs: tudo isso foi tirado do `package.json`**
+**Obs: tudo isso está no `package.json`**
 
 ## Funcionamento do banco
 O banco de dados foi construido apartir da ideia de que a escola contenha 2 tipos de funcionários dividos em tabelas, sendo eles os:
