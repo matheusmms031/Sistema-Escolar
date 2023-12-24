@@ -1,8 +1,12 @@
+import { UserContext } from '../App';
 import '../styles/Painel.scss'
+import { useState,useContext, useEffect } from 'react';
 
 
 
 function Painel(){
+    const [user,setUser] = useContext(UserContext)
+    
     return(
         <div className="painel">
             <nav>

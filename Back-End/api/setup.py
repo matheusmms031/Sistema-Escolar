@@ -2,10 +2,14 @@ from flask import Flask, request, Response, render_template, jsonify, g
 from datetime import date
 import flask 
 import json
+from flask_cors import CORS
+
 import mysql.connector
 from dbcommands import Commands
 
 app = Flask(__name__)
+cors = CORS(app,origins="*")
+
 mydb = mysql.connector.connect(user='root', password='Senha1234',
                               host='127.0.0.1',
                               database='cadastro')

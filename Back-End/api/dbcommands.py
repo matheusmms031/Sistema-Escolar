@@ -24,9 +24,11 @@ class Commands():
             resposta = self.cursor.fetchall()
             if len(resposta) != 0:
                 resposta = resposta[0]
+                saida['data']['usuario'] = tabela
                 for coluna in self.TABELAS[tabela]:
                     saida['data'][coluna] = resposta[self.TABELAS[tabela].index(coluna)]
                 saida['status_code'] = 200
+                return saida
             else:
                 saida['status_code'] = 500
         return saida
