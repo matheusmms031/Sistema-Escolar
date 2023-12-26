@@ -8,7 +8,7 @@ function Alunos(){
         <div className="home">
             <NavBar/>
             <OperacionalTitle title={'Painel de controle'}/>
-            <PainelBox page={true}>
+            <PainelBox page={false}>
                 <span>alunos</span>
             </PainelBox>
         </div>

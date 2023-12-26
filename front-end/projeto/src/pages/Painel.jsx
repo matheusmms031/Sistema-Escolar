@@ -1,11 +1,11 @@
 import { UserContext } from '../App';
 import '../styles/Painel.scss'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState,useContext, useEffect } from 'react';
 import OperacionalTitle from '../components/OperacionalTitle';
 import NavBar from '../components/NavBar';
 import PainelBox from '../components/PainelBox';
-
+import Card from '../components/Card';
 
 
 function Painel(){
@@ -26,7 +26,7 @@ function Painel(){
             <NavBar/>
             <OperacionalTitle title={'Painel de controle'}/>
             <PainelBox page={true}>
-                <span>Teste</span>
+                <Link to={'/painel/alunos'} style={{'textDecoration':'none'}}><Card title={'Alunos'} about={'Sobre'}/></Link>
             </PainelBox>
         </div>
     );
