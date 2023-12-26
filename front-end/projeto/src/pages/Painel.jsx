@@ -1,10 +1,10 @@
 import { UserContext } from '../App';
 import '../styles/Painel.scss'
-import OpcoesPainel from '../components/OpcoesPainel';
 import { useNavigate } from 'react-router-dom';
 import { useState,useContext, useEffect } from 'react';
 import OperacionalTitle from '../components/OperacionalTitle';
 import NavBar from '../components/NavBar';
+import PainelBox from '../components/PainelBox';
 
 
 
@@ -25,7 +25,9 @@ function Painel(){
         <div className="home">
             <NavBar/>
             <OperacionalTitle title={'Painel de controle'}/>
-            <OpcoesPainel/>
+            <PainelBox page={true}>
+                <span>Teste</span>
+            </PainelBox>
         </div>
     );
 }
