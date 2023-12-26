@@ -36,9 +36,7 @@ function Painel(){
                     </div>
                 </div>      
             </nav>
-            <section className="operacional">
-                <OperacionalTitle title={'Painel de controle'}/>
-            </section>
+            <OperacionalTitle title={'Painel de controle'}/>
             <OpcoesPainel/>
         </div>
     );
