@@ -13,7 +13,7 @@ class Commands():
     def __init__(self,cursor):
         self.mydb = mydb
         self.cursor = cursor
-        self.TABELAS = {'alunos':['cpf','nome','nascimento','email','senha','unidade_id'],'coordenadores':['cpf','nome','nascimento','email','senha','unidade_id']}
+        self.TABELAS = {'alunos':['cpf','nome','nascimento','email','senha','unidade_id'],'coordenadores':['cpf','nome','nascimento','email','senha','unidade_id'],'unidades':['id','nome','localização','cpf_coordenador']}
         
     def login(self,email,senha):
         tabelas_login = ['alunos','coordenadores']
@@ -103,12 +103,21 @@ class Commands():
         
     def consulta(self,tabela,argumentos,email_usuario,senha_usuario):
         loginconfirmacao = self.loginconfirmacao('coordenadores',email_usuario,senha_usuario)
+        saida = {'status_code':0,'data':[]}
         parametros = self.argumentos_query(argumentos)
         if loginconfirmacao == True:
-            query = (f"SELECT * FROM {tabela} WHERE {parametros}")
+            if argumentos == "" or argumentos == {}:
+                query = (f"SELECT * FROM {tabela}")
+            else:
+                query = (f"SELECT * FROM {tabela} WHERE {parametros}")
             self.cursor.execute(query)
             resultado = self.cursor.fetchall()
-            return resultado
+            for c in range(0,len(resultado)):
+                saida['data'].append({})
+                for coluna in self.TABELAS[tabela]:
+                    saida['data'][c][coluna] = resultado[c][self.TABELAS[tabela].index(coluna)]
+            saida['status_code'] = 200
         else:
-            return 403
+            saida['status_code'] = 403
+        return saida
         
