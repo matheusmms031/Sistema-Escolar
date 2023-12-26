@@ -7,21 +7,25 @@ import Painel from './pages/Painel'
 import Alunos from './pages/Alunos'
 
 export const UserContext = createContext()
+export const InfoContext = createContext()
 
 export default function App() {
-  const [user,setUser] = useState({'cpf':'999.999.999-99','nome':'nometeste','email':'emailteste','senha':'senhateste','unidade_id':'unidadeteste','usuario':'coordenadores'})
+  const [user,setUser] = useState({'cpf':'999.999.999-99','nome':'nometeste','email':'c_emailteste','senha':'c_senhateste','unidade_id':'1','usuario':'coordenadores'})
+  const [info,setInfo] = useState({'unidades':[],'alunos':[]})
 
   return(
     <UserContext.Provider value={[user,setUser]}>
-      <BrowserRouter>
-        <Routes>
-            <Route path='/' element={
-              <Home/>
-            }/>
-            <Route path='/painel' element={<Painel/>}/>
-            <Route exact path='/painel/alunos' element={<Alunos/>}/>
-        </Routes>
-      </BrowserRouter>
+      <InfoContext.Provider value={[info,setInfo]}>
+        <BrowserRouter>
+          <Routes>
+              <Route path='/' element={
+                <Home/>
+              }/>
+              <Route path='/painel' element={<Painel/>}/>
+              <Route exact path='/painel/alunos' element={<Alunos/>}/>
+          </Routes>
+        </BrowserRouter>
+      </InfoContext.Provider>
     </UserContext.Provider>
   )
 }
