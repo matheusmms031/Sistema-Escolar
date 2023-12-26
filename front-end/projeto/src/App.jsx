@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/Login'
 import Painel from './pages/Painel'
+import Alunos from './pages/Alunos'
 
 export const UserContext = createContext()
 
@@ -18,6 +19,7 @@ export default function App() {
               <Home/>
             }/>
             <Route path='/painel' element={<Painel/>}/>
+            <Route exact path='/painel/alunos' element={<Alunos/>}/>
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
