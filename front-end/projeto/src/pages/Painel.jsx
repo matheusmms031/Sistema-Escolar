@@ -4,6 +4,7 @@ import OpcoesPainel from '../components/OpcoesPainel';
 import { useNavigate } from 'react-router-dom';
 import { useState,useContext, useEffect } from 'react';
 import OperacionalTitle from '../components/OperacionalTitle';
+import NavBar from '../components/NavBar';
 
 
 
@@ -22,20 +23,7 @@ function Painel(){
     
     return(
         <div className="home">
-            <nav>
-                <div className='nav-content'>
-                    <div className='nav-items'>
-                        <span className='nome1'>Unidade</span>
-                        <span>|</span>
-                        <span className='nome2'>{user.unidade_id}</span>
-                    </div>
-                    <div className='nav-items'>
-                        <span className='nome1'>{user.cpf}</span>
-                        <span>|</span>
-                        <span className='nome2'>{user.nome}</span>
-                    </div>
-                </div>      
-            </nav>
+            <NavBar/>
             <OperacionalTitle title={'Painel de controle'}/>
             <OpcoesPainel/>
         </div>
