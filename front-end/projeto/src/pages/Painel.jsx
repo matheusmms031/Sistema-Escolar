@@ -6,7 +6,14 @@ import OperacionalTitle from '../components/OperacionalTitle';
 import NavBar from '../components/NavBar';
 import PainelBox from '../components/PainelBox';
 import Card from '../components/Card';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
+export const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
 
 function Painel(){
     const [user,setUser] = useContext(UserContext)
@@ -26,7 +33,10 @@ function Painel(){
             <NavBar/>
             <OperacionalTitle title={'Painel de controle'}/>
             <PainelBox page={true}>
-                <Link to={'/painel/alunos'} style={{'textDecoration':'none'}}><Card title={'Alunos'} about={'Sobre'}/></Link>
+                <ThemeProvider theme={darkTheme}>
+                    <CssBaseline />
+                    <Link to={'/painel/alunos'} style={{'textDecoration':'none'}}><Card title={'Alunos'} about={'Painel de dados sobre os alunos e suas informações'}/></Link>
+                </ThemeProvider>
             </PainelBox>
         </div>
     );

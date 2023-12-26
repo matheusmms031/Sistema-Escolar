@@ -14,6 +14,8 @@ function PainelBox(props) {
     }
 
 
+
+
     return(
         <section className="painelbox" style={{'justifyContent':justifycontent,'flexDirection':flexdirection}}>
             {props.children}

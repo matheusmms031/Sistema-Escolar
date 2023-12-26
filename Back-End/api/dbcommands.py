@@ -39,10 +39,16 @@ class Commands():
         valores = list(argumentos.values())
         query = ""
         if len(chaves) == 1:
-            query = f"{chaves[0]}='{valores[0]}'"
+            if chaves[0] == 'nome' or chaves[0] == 'email':
+                query = f"{chaves[0]} LIKE '{valores[0]}%'"
+            else:
+                query = f"{chaves[0]}='{valores[0]}'"
         else:
             for argumento in chaves:
-                query += f" && {argumento}='{valores[chaves.index(argumento)]}'"
+                if argumento == 'nome' or chaves[0] == 'email':
+                    query += f" && {argumento} LIKE '{valores[chaves.index(argumento)]}%'"
+                else:
+                    query += f" && {argumento}='{valores[chaves.index(argumento)]}'"
             query = query.replace("&&","",1).strip()
         print(query)
         return query
